@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://mcr.microsoft.com/
-        username: ${{ secrets.AzureAppService_ContainerUsername_9ccfee10604a485db39b7b04cd57c945 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_664e710009e342dfa708d52a57996201 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_36763aae6f3f4b0b85771f038ad7886c }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_5f8c69727b2946a69d896a0350704acd }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_9ccfee10604a485db39b7b04cd57c945 }}/appsvc/staticsite:${{ github.sha }}
+        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_36763aae6f3f4b0b85771f038ad7886c }}/appsvc/staticsite:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'carrefour-sftp-webapp'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_c4c02d1a4aa94162966160f7db99b3f5 }}
-        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_9ccfee10604a485db39b7b04cd57c945 }}/appsvc/staticsite:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_f5c6071633204758be51419fb8529dba }}
+        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_36763aae6f3f4b0b85771f038ad7886c }}/appsvc/staticsite:${{ github.sha }}'
